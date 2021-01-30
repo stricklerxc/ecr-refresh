@@ -1,0 +1,34 @@
+name: Build & Deploy
+on:
+  push:
+    paths:
+      - '**.go'
+      - '.github/workflows/**.yml'
+
+jobs:
+  build:
+    name: Build
+    runs-on:
+      - ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      - uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
+        with:
+          go-version: '^1.15.0'
+
+      # - name: Lint
+      #   uses: github/super-linter@aa7273e80fa0aa427a9d3eca750d19ce3736afe8 # v3.14.0
+      #   env:
+      #     VALIDATE_GO: true
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Unit Test
+        run: go test -cover -v ./...
+
+  # deploy:
+  #   name: Deploy
+  #   needs: build
+  #   runs-on:
+  #     - self-hosted
+  #     - Linux
