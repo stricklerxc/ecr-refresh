@@ -1,6 +1,6 @@
 # ECR Refresh
 
-![Build & Deploy](https://github.com/stricklerxc/ecr-refresh/workflows/CI/badge.svg)
+![CI](https://github.com/stricklerxc/ecr-refresh/workflows/CI/badge.svg)
 
 A Kubernetes utility for refreshing expired ECR tokens in your Docker Registry secrets.
 
